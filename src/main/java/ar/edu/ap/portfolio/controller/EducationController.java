@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600)
+@CrossOrigin(origins = {"http://localhost:4200","https://portfolioap-184a7.web.app"})
 @RequestMapping("/education")
 public class EducationController {
 

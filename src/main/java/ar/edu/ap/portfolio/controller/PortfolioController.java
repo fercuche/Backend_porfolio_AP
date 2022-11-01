@@ -12,6 +12,7 @@ import javax.validation.Valid;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = {"http://localhost:4200","https://portfolioap-184a7.web.app"})
 @RequestMapping("/portfolio")
 public class PortfolioController {
 
