@@ -17,7 +17,6 @@ public class Experience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "experience_id", nullable = false)
     private Long id;
 
     private String jobTitle;
@@ -31,9 +30,11 @@ public class Experience {
     private String companyLogo;
     private String jobDescription;
 
+    @Column(name = "portfolio_id")
+    private Long portfolioId;
+    /*@ManyToOne
+    @JoinColumn(name = "portfolio_id", referencedColumnName = "id")
+    private Portfolio portfolio;*/
 
-    @ManyToOne
-    @JoinColumn(name = "portfolio_id")
-    private Portfolio portfolio;
 
 }

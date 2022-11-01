@@ -17,7 +17,6 @@ public class Education {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "education_id", nullable = false)
     private Long id;
 
     private String title;
@@ -30,8 +29,10 @@ public class Education {
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate endDate;
 
-    @ManyToOne
-    @JoinColumn(name = "portfolio_id")
-    private Portfolio portfolio;
+    @Column(name = "portfolio_id")
+    private Long portfolioId;
+    /*@ManyToOne
+    @JoinColumn(name = "portfolio_id", referencedColumnName = "id")
+    private Portfolio portfolio;*/
 
 }

@@ -1,23 +1,21 @@
 package ar.edu.ap.portfolio.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
 @AllArgsConstructor
 @Getter
-@Setter
-
+@EqualsAndHashCode
 public class PortfolioDto implements Serializable {
-    private Long id;
-    private String name;
-    private String lastname;
-    private LocalDate dob;
-    private String occupation;
-    private String aboutMe;
-    private String profileImg;
-    private String headerImg;
+    private final String name;
+    private final String lastname;
+    private final LocalDate dob;
+    private final String occupation;
+    private final String aboutMe;
+    private final String profileImg;
+    private final String headerImg;
 }

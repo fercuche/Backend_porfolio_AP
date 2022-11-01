@@ -5,41 +5,42 @@ import ar.edu.ap.portfolio.entity.Portfolio;
 import ar.edu.ap.portfolio.exception.ParamNotFound;
 import ar.edu.ap.portfolio.mapper.PortfolioMapper;
 import ar.edu.ap.portfolio.repository.PortfolioRepository;
-import ar.edu.ap.portfolio.service.PortfolioService;
-import lombok.RequiredArgsConstructor;
+import ar.edu.ap.portfolio.service.IPortfolioService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
-public class PortfolioServiceImpl implements PortfolioService {
+public class PortfolioServiceImpl implements IPortfolioService {
 
+    @Autowired
+    private PortfolioRepository portfolioRepository;
 
-    private final PortfolioRepository portfolioRepository;
-    private final PortfolioMapper mapper;
+    @Autowired
+    private PortfolioMapper mapper;
 
     @Transactional(readOnly = true)
-    public Portfolio get() {
-        return (Portfolio) portfolioRepository.findAll();
+    public Portfolio get(Long id) {
+        return portfolioRepository.findById(id).orElseThrow(() ->
+                new ParamNotFound("El portfolio con el id " + id +" no se encuentra"));
     }
 
     @Transactional
-    public Portfolio save(PortfolioDto dto) {
-        Portfolio pf = mapper.dto2Portfolio(dto);
-        return portfolioRepository.save(pf);
+    public Portfolio save(Portfolio portfolio) {
+        return portfolioRepository.save(portfolio);
     }
 
     @Transactional
     public Portfolio update(Long id, PortfolioDto dto) {
         Optional<Portfolio> result = portfolioRepository.findById(id);
         if(!result.isPresent()) {
-            throw new ParamNotFound("no se encuentra el id");
+            throw new ParamNotFound("No se encuentra el id" + id);
         }
-        dto.setId(result.get().getId());
-        Portfolio pf = mapper.dto2Portfolio(dto);
-        return portfolioRepository.save(pf);
+        Portfolio pf = result.get();
+        Portfolio updated = mapper.updatePortfolioFromPortfolioDto(dto, pf);
+        return portfolioRepository.save(updated);
     }
 
 }

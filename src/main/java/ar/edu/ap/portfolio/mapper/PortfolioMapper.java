@@ -2,13 +2,14 @@ package ar.edu.ap.portfolio.mapper;
 
 import ar.edu.ap.portfolio.dto.PortfolioDto;
 import ar.edu.ap.portfolio.entity.Portfolio;
-import org.mapstruct.Mapper;
+import org.mapstruct.*;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface PortfolioMapper {
+    Portfolio portfolioDtoToPortfolio(PortfolioDto portfolioDto);
 
-    PortfolioDto portfolio2dto(Portfolio portfolio);
+    PortfolioDto portfolioToPortfolioDto(Portfolio portfolio);
 
-    Portfolio dto2Portfolio(PortfolioDto dto);
-
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+    Portfolio updatePortfolioFromPortfolioDto(PortfolioDto portfolioDto, @MappingTarget Portfolio portfolio);
 }

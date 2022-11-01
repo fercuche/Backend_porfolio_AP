@@ -16,7 +16,6 @@ public class Skill {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "skill_id", nullable = false)
     private Long id;
 
     private String name;
@@ -26,9 +25,11 @@ public class Skill {
 
     private Integer percentage;
 
+    @Column(name = "portfolio_id")
+    private Long portfolioId;
 
-    @ManyToOne
-    @JoinColumn(name = "portfolio_id")
-    private Portfolio portfolio;
+    /*@ManyToOne
+    @JoinColumn(name = "portfolio_id", referencedColumnName = "id")
+    private Portfolio portfolio;*/
 
 }

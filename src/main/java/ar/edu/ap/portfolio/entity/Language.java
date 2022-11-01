@@ -16,7 +16,6 @@ public class Language {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "language_id", nullable = false)
     private Long id;
 
     private String name;
@@ -24,8 +23,10 @@ public class Language {
     @Enumerated(EnumType.STRING)
     private LanguageLevel level;
 
-    @ManyToOne
-    @JoinColumn(name = "portfolio_id")
-    private Portfolio portfolio;
+    @Column(name = "portfolio_id")
+    private Long portfolioId;
+    /*@ManyToOne
+    @JoinColumn(name = "portfolio_id", referencedColumnName = "id")
+    private Portfolio portfolio;*/
 
 }
