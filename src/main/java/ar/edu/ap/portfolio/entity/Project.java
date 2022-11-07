@@ -13,11 +13,10 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @Table(name = "projects")
-public class Project {
+public class Project{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "project_id", nullable = false)
     private Long id;
 
     private String name;
@@ -29,8 +28,10 @@ public class Project {
     private String url;
     private String image;
 
-    @ManyToOne
-    @JoinColumn(name = "portfolio_id")
-    private Portfolio portfolio;
+    @Column(name = "portfolio_id")
+    private Long portfolioId;
+    /*@ManyToOne
+    @JoinColumn(name = "portfolio_id", referencedColumnName = "id")
+    private Portfolio portfolio;*/
 
 }
