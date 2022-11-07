@@ -30,11 +30,4 @@ public class Experience {
     private String companyLogo;
     private String jobDescription;
 
-    @Column(name = "portfolio_id")
-    private Long portfolioId;
-    /*@ManyToOne
-    @JoinColumn(name = "portfolio_id", referencedColumnName = "id")
-    private Portfolio portfolio;*/
-
-
 }

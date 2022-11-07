@@ -1,27 +1,29 @@
 package ar.edu.ap.portfolio.auth.entity;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import java.sql.Timestamp;
 import java.util.Collection;
 
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
-@SQLDelete(sql = "UPDATE users SET enabled = true WHERE user_id = ?")
+@SQLDelete(sql = "UPDATE users SET deleted = true WHERE id=?")
+@Where(clause= "deleted = false")
 @Table(name = "users")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
     private Long id;
 
     @Email
@@ -31,21 +33,34 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
 
+    private boolean deleted = Boolean.FALSE;
+
+    @CreationTimestamp
+    @Column(name="creation_date", updatable = false)
+    private Timestamp creationDate;
+
+    @UpdateTimestamp
+    @Column(name="last_updated")
+    private Timestamp lastUpdated;
+
+    private boolean accountNonExpired;
+
+    private boolean accountNonLocked;
+
+    private boolean credentialsNonExpired;
+
     private boolean enabled;
 
+
+    public User() {
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
+        this.enabled = true;
+    }
+
+    @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;
-    }
-
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    public boolean isCredentialsNonExpired() {
-        return false;
     }
 }

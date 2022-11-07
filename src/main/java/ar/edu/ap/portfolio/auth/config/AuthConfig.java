@@ -48,9 +48,9 @@ public class AuthConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                //.antMatchers("/api-docs/**","/swagger-docs.html/**", "/swagger-ui/**","/v3/api-docs/**").permitAll()
-               // .antMatchers("/auth/*").permitAll()
-                .anyRequest().permitAll()
+                .antMatchers("/api-docs/**","/swagger-docs.html/**", "/swagger-ui/**","/v3/api-docs/**").permitAll()
+                .antMatchers("/auth/*").permitAll()
+                .anyRequest().authenticated()
                 .and().exceptionHandling()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

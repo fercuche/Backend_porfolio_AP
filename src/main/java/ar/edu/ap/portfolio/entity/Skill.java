@@ -25,11 +25,4 @@ public class Skill {
 
     private Integer percentage;
 
-    @Column(name = "portfolio_id")
-    private Long portfolioId;
-
-    /*@ManyToOne
-    @JoinColumn(name = "portfolio_id", referencedColumnName = "id")
-    private Portfolio portfolio;*/
-
 }
