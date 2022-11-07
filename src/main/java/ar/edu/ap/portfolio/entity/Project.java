@@ -28,10 +28,5 @@ public class Project{
     private String url;
     private String image;
 
-    @Column(name = "portfolio_id")
-    private Long portfolioId;
-    /*@ManyToOne
-    @JoinColumn(name = "portfolio_id", referencedColumnName = "id")
-    private Portfolio portfolio;*/
 
 }

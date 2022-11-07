@@ -29,10 +29,5 @@ public class Education {
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     private LocalDate endDate;
 
-    @Column(name = "portfolio_id")
-    private Long portfolioId;
-    /*@ManyToOne
-    @JoinColumn(name = "portfolio_id", referencedColumnName = "id")
-    private Portfolio portfolio;*/
 
 }
