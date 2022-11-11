@@ -26,19 +26,19 @@ public class EducationController {
     }
 
     @PostMapping
-    public ResponseEntity<Education> saveEdu(@RequestBody Education education){
+    public ResponseEntity<Education> save(@RequestBody Education education){
         Education response = educationService.save(education);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Education> updateEdu(@PathVariable Long id, @RequestBody EducationDto dto){
+    public ResponseEntity<Education> update(@PathVariable Long id, @RequestBody EducationDto dto){
         Education updated = educationService.update(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteEdu(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         educationService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

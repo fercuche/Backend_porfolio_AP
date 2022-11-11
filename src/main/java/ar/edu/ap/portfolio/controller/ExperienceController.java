@@ -18,26 +18,26 @@ public class ExperienceController {
     @Autowired
     private IExperienceService experienceService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Experience>> getAll(){
         List<Experience> experiences= experienceService.getAll();
         return ResponseEntity.status(HttpStatus.OK).body(experiences);
     }
 
     @PostMapping
-    public ResponseEntity<Experience> saveExp(@RequestBody Experience exp){
+    public ResponseEntity<Experience> save(@RequestBody Experience exp){
         Experience experience = experienceService.save(exp);
         return ResponseEntity.status(HttpStatus.CREATED).body(experience);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Experience> updateExp(@PathVariable Long id, @RequestBody ExperienceDto dto){
+    public ResponseEntity<Experience> update(@PathVariable Long id, @RequestBody ExperienceDto dto){
         Experience updated = experienceService.update(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteExp(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         experienceService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
