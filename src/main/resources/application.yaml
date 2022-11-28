@@ -1,0 +1,39 @@
+#
+#spring:
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/portfolio_ap
+#    username: root
+#    password: root
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#        format_sql: false
+#    show-sql: true
+
+#Production
+spring:
+  datasource:
+    url: jdbc:${MYSQL_ADDON_URI}
+    username: ${MYSQL_ADDON_USER}
+    password: ${MYSQL_ADDON_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: false
+    show-sql: true
+
+#Swagger
+springdoc:
+  packages-to-scan: ar.edu.ap.portfolio.auth.controller, ar.edu.ap.portfolio.controller, ar.edu.ap.portfolio.configuration
+  paths-to-match: /**
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-docs.html
+    operations-sorter: method
