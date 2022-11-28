@@ -25,18 +25,18 @@ public class SkillController {
     }
 
     @PostMapping
-    public ResponseEntity<Skill> saveSkill(@RequestBody Skill skill){
+    public ResponseEntity<Skill> save(@RequestBody Skill skill){
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(skill));
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Skill> updateSkill(@PathVariable Long id, @RequestBody SkillDto dto){
+    public ResponseEntity<Skill> update(@PathVariable Long id, @RequestBody SkillDto dto){
         Skill updated = service.update(id, dto);
         return ResponseEntity.status(HttpStatus.OK).body(updated);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSkill(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id){
         service.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+@CrossOrigin
 @RestController
 @AllArgsConstructor
-@CrossOrigin(origins = {"http://localhost:4200","https://portfolioap-184a7.web.app"})
 @RequestMapping("/portfolio")
 public class PortfolioController {
 
@@ -25,7 +25,7 @@ public class PortfolioController {
         return ResponseEntity.ok().body(pf);
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<Portfolio> update(@PathVariable Long id, @Valid @RequestBody PortfolioDto dto){
         Portfolio result = IPortfolioService.update(id, dto);
         return ResponseEntity.ok().body(result);
